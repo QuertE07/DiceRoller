@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1d10n2pinpvv"]
+
+[ext_resource type="ArrayMesh" uid="uid://bqmvx2ojkxie1" path="res://models/d12.res" id="1_nqxd0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3rw26"]
+points = PackedVector3Array(0.8589467, -0.172562, 0.27900767, 0.530704, -0.7302786, 0.1723907, 0.32807457, -0.7302786, -0.451575, 0.530704, -0.172562, -0.73075944, 0.8589467, 0.17241883, -0.2791844, 0.32807457, 0.7302785, 0.45139825, 0.530704, 0.17241883, 0.7305827, -5.9604645e-08, -0.172562, 0.9031502, -5.9604645e-08, -0.7302786, 0.5580152, -0.32824278, -0.7302786, -0.451575, -0.5308722, -0.172562, -0.73075944, -5.9604645e-08, 0.17241883, -0.9031501, -5.9604645e-08, 0.7302785, -0.558192, 0.530704, 0.7302785, -0.17256743, -0.32824278, 0.7302785, 0.45139825, -0.5308722, 0.17241883, 0.7305827, -0.8589468, -0.172562, 0.27900767, -0.5308722, -0.7302786, 0.1723907, -0.8589468, 0.17241883, -0.2791844, -0.5308722, 0.7302785, -0.17256743)
+
+[node name="d12_1" type="RigidBody3D"]
+mass = 1.4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_nqxd0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_3rw26")

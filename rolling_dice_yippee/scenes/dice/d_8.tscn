@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddp3hq7apev6c"]
+
+[ext_resource type="ArrayMesh" uid="uid://v7aopr7i3sk0" path="res://models/d8.res" id="1_0pki3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i4w3v"]
+points = PackedVector3Array(-0.72460854, -0.00019860268, -0.72460854, -0.00014185905, -1.0145323, -0.00014185905, -0.72460854, -0.00019860268, 0.72460854, -0.00014185905, 1.0145323, -0.00014185905, 0.72460854, -0.00019860268, -0.72460854, 0.72460854, -0.00019860268, 0.72460854)
+
+[node name="d8_1" type="RigidBody3D"]
+mass = 1.4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0pki3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_i4w3v")
