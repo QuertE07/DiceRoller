@@ -1,15 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://81dtsdxsnolm"]
+[gd_scene load_steps=5 format=3 uid="uid://81dtsdxsnolm"]
 
-[ext_resource type="ArrayMesh" uid="uid://c02ew50haoprf" path="res://models/d4.res" id="1_lrig6"]
+[ext_resource type="Script" uid="uid://ddyssftarjwin" path="res://scripts/dice.gd" id="1_26hq1"]
+[ext_resource type="ArrayMesh" uid="uid://l0gwppfpr3jg" path="res://models/d4.res" id="1_lrig6"]
+[ext_resource type="PhysicsMaterial" uid="uid://47d8uuq8t8w" path="res://misc_assets/dice_physmat.tres" id="1_qaayq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_26hq1"]
-points = PackedVector3Array(-0.00015294552, -0.64682305, -0.90273035, -0.7813621, -0.64682305, 0.45062852, -0.00015294552, 0.6304122, -0.00057941675, 0.7813621, -0.64682305, 0.45062852)
+points = PackedVector3Array(-0.0001988411, -0.8372409, -1.1057341, -1.0157707, -0.8372409, 0.6536324, -0.0001988411, 0.82332736, 0.06706202, 1.0155718, -0.8372409, 0.6536324)
 
 [node name="d4_1" type="RigidBody3D"]
-mass = 1.4
+mass = 9.0
+physics_material_override = ExtResource("1_qaayq")
+gravity_scale = 4.0
+angular_damp = 0.5
+script = ExtResource("1_26hq1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_lrig6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_26hq1")
+
+[node name="1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6975848, -0.63739026, 0.41264874)
+
+[node name="2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005144894, -0.63739026, -0.8171288)
+
+[node name="3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6965404, -0.63739026, 0.4069814)
+
+[node name="4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5213803, 0)

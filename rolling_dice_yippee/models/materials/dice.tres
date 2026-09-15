@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dj0fwjxx8gogn"]
+
+[ext_resource type="Texture2D" uid="uid://dokitgyobyayn" path="res://textures/DiceBase.png" id="1_wcswm"]
+
+[resource]
+albedo_texture = ExtResource("1_wcswm")
+roughness = 0.3

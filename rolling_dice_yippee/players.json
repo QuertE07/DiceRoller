@@ -1,0 +1,12 @@
+{
+	"sets": [
+		{
+			"name": "Anankos",
+			"texture": "res://textures/DiceBase.png"
+		},
+		{
+			"name": "Grima",
+			"texture": "res://textures/DiceBase.png"
+		}
+	]
+}

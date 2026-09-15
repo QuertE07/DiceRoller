@@ -1,106 +1,197 @@
-[gd_scene load_steps=13 format=3 uid="uid://byq482v1nawkg"]
+[gd_scene load_steps=12 format=3 uid="uid://byq482v1nawkg"]
 
-[ext_resource type="PackedScene" uid="uid://81dtsdxsnolm" path="res://scenes/dice/d_4.tscn" id="1_brpd5"]
-[ext_resource type="PackedScene" uid="uid://bn4p411epibmx" path="res://scenes/dice/d_6.tscn" id="2_ry43h"]
-[ext_resource type="PackedScene" uid="uid://ddp3hq7apev6c" path="res://scenes/dice/d_8.tscn" id="3_dijgj"]
-[ext_resource type="PackedScene" uid="uid://blde6rj0ws4v2" path="res://scenes/dice/d_10.tscn" id="4_faous"]
-[ext_resource type="PackedScene" uid="uid://1d10n2pinpvv" path="res://scenes/dice/d_12.tscn" id="5_wavyb"]
-[ext_resource type="PackedScene" uid="uid://b67aab2p61hiq" path="res://scenes/dice/d_20.tscn" id="6_ry43h"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_on5l8"]
-size = Vector3(26, 1, 15)
-
-[sub_resource type="BoxMesh" id="BoxMesh_on5l8"]
-size = Vector3(26, 1, 15)
+[ext_resource type="Script" uid="uid://dtp7alc4cxw7m" path="res://scripts/box.gd" id="1_dijgj"]
+[ext_resource type="FontFile" uid="uid://vc5tjj1digs6" path="res://misc_assets/de-vinne-ornament-d.ttf" id="2_ks2v0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3inec"]
-size = Vector3(26, 5, 1)
+size = Vector3(17, 9, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ks2v0"]
-size = Vector3(26, 5, 1)
+size = Vector3(20, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ks2v0"]
-size = Vector3(1, 5, 15)
+size = Vector3(1, 9, 10.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c2ln5"]
-size = Vector3(1, 5, 15)
+size = Vector3(1, 5, 14)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2ln5"]
+size = Vector3(17, 1, 10.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ks2v0"]
+friction = 0.7
+rough = true
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_on5l8"]
+size = Vector3(17, 1, 10.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_on5l8"]
+size = Vector3(15, 1, 8.5)
+
+[sub_resource type="Curve3D" id="Curve3D_3inec"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 7, 4, 3.5, 0, 0, 0, 0, 0, 0, -7, 4, 3.5, 0, 0, 0, 0, 0, 0, -7, 4, -3.5, 0, 0, 0, 0, 0, 0, 7, 4, -3.5),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_dijgj")
+
+[node name="Info" type="Window" parent="."]
+transparent_bg = true
+oversampling_override = 1.0
+title = "DiceRoller Info"
+initial_position = 2
+size = Vector2i(800, 100)
+transient = true
+unresizable = true
+always_on_top = true
+transparent = true
+minimize_disabled = true
+maximize_disabled = true
+
+[node name="Name" type="Label" parent="Info"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 209.0
+offset_bottom = 25.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_ks2v0")
+theme_override_font_sizes/font_size = 60
+text = "George"
+vertical_alignment = 1
+
+[node name="Result" type="Label" parent="Info"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -35.5
+offset_right = -19.0
+offset_bottom = 35.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_ks2v0")
+theme_override_font_sizes/font_size = 80
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StringInstance" type="Label" parent="Info"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -25.0
+offset_right = -101.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_ks2v0")
+theme_override_font_sizes/font_size = 45
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instances" type="Node" parent="Info"]
 
 [node name="Box" type="StaticBody3D" parent="."]
 
-[node name="floor" type="CollisionShape3D" parent="Box"]
-shape = SubResource("BoxShape3D_on5l8")
-
-[node name="floor2" type="MeshInstance3D" parent="Box"]
-mesh = SubResource("BoxMesh_on5l8")
-
 [node name="zpos" type="CollisionShape3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6.8447876)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 4.5, 4.75)
 shape = SubResource("BoxShape3D_3inec")
 
 [node name="zpos2" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6.8447876)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881907, 0, 0.25881907, 0.9659258, 0, 2.7, 5)
+visible = false
 mesh = SubResource("BoxMesh_ks2v0")
-skeleton = NodePath("../floor2")
+skeleton = NodePath("")
 
 [node name="zneg" type="CollisionShape3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6.845)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 4.5, -4.75)
 shape = SubResource("BoxShape3D_3inec")
 
 [node name="zneg2" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6.845)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.258819, 0, -0.258819, 0.9659258, 0, 2.7, -5)
+visible = false
 mesh = SubResource("BoxMesh_ks2v0")
-skeleton = NodePath("../floor2")
+skeleton = NodePath("")
 
 [node name="xpos" type="CollisionShape3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 8, 4.5, 0)
 shape = SubResource("BoxShape3D_ks2v0")
 
 [node name="xpos2" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 0)
+transform = Transform3D(0.96592593, 0.25881904, 0, -0.25881904, 0.96592593, 0, 0, 0, 1, 8, 2.7, 0)
+visible = false
 mesh = SubResource("BoxMesh_c2ln5")
-skeleton = NodePath("../floor2")
+skeleton = NodePath("")
 
 [node name="xneg" type="CollisionShape3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -8, 4.5, 0)
 shape = SubResource("BoxShape3D_ks2v0")
 
 [node name="xneg2" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 0)
+transform = Transform3D(0.9659258, -0.25881907, 0, 0.25881907, 0.9659258, 0, 0, 0, 1, -8, 2.7, 0)
+visible = false
 mesh = SubResource("BoxMesh_c2ln5")
-skeleton = NodePath("../floor2")
+skeleton = NodePath("")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15.7036495, 0)
+[node name="ceiling" type="CollisionShape3D" parent="Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.892515, 0)
+shape = SubResource("BoxShape3D_c2ln5")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ks2v0")
+
+[node name="floor" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_on5l8")
+
+[node name="floor2" type="MeshInstance3D" parent="Floor"]
+visible = false
+mesh = SubResource("BoxMesh_on5l8")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10.707842, 0)
 fov = 50.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.54765755, -0.8031377, 0.23460855, 0.16456722, 0.3783147, 0.91093135, -0.82035905, -0.4602695, 0.33935702, 0, 8.2905035, 0)
+[node name="Key" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.54765755, -0.80313766, 0.23460859, 0.16456722, 0.37831467, 0.9109312, -0.82035905, -0.46026945, 0.339357, 0, 17.978535, 0)
 light_volumetric_fog_energy = 0.0
+light_specular = 0.2
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="d4" parent="." instance=ExtResource("1_brpd5")]
-transform = Transform3D(0.5261922, -0.39724907, -0.7518743, 0.60252565, 0.7980995, 0, 0.60007054, -0.45302358, 0.65930647, -11.619238, 7.2684536, -5.0000615)
-linear_velocity = Vector3(10, 0, 0)
+[node name="BackLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.05967707, 0.946544, -0.31700632, 0.4317465, -0.31080666, -0.8467551, -0.9000186, -0.0863345, -0.42721516, 0, 14.685449, 0)
+light_color = Color(0.70297205, 0.6290176, 0.5968334, 1)
+light_volumetric_fog_energy = 0.0
+light_specular = 0.1
+directional_shadow_mode = 0
+sky_mode = 1
 
-[node name="d6" parent="." instance=ExtResource("2_ry43h")]
-transform = Transform3D(0.53182733, 0.84685284, 0, -0.8352656, 0.5245505, -0.16485825, -0.13961068, 0.08767612, 0.9863173, -11.802061, 7.262911, -1.5642409)
-linear_velocity = Vector3(10, 0, 0)
+[node name="SpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_3inec")
 
-[node name="d8" parent="." instance=ExtResource("3_dijgj")]
-transform = Transform3D(0.49488246, 0, 0.8689599, -0.45446986, 0.85232997, 0.25882572, -0.7406406, -0.5230044, 0.42180315, -11.844766, 7.585015, 0.43246937)
-linear_velocity = Vector3(10, 0, 0)
+[node name="Die" type="Node" parent="."]
 
-[node name="d10" parent="." instance=ExtResource("4_faous")]
-transform = Transform3D(0.71112186, -0.49275574, 0.5014954, 0.5690045, 0.82233363, 0.0011526966, -0.41296455, 0.28453347, 0.86515963, -11.618055, 7.5624213, 2.3467283)
-linear_velocity = Vector3(10, 0, 0)
-
-[node name="d12" parent="." instance=ExtResource("5_wavyb")]
-transform = Transform3D(0.6061776, 0.57275486, 0.5518156, -0.69018906, 0.72359383, 0.007131528, -0.3952058, -0.38518012, 0.8339357, -12.045659, 7.3532786, 4.617945)
-linear_velocity = Vector3(10, 0, 0)
-
-[node name="d20_1" parent="." instance=ExtResource("6_ry43h")]
-transform = Transform3D(0.54969674, 0.6216401, 0.55802965, -0.43624693, 0.783303, -0.44286004, -0.71240586, 0, 0.7017677, -12.029957, 7.3591065, -3.1792397)
-linear_velocity = Vector3(10, 0, 0)
+[connection signal="close_requested" from="Info" to="." method="_on_info_close_requested"]
