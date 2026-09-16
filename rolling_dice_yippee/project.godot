@@ -12,6 +12,8 @@ config_version=5
 
 config/name="DiceRoller"
 run/main_scene="uid://byq482v1nawkg"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="DiceRoller"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/use_filter=false

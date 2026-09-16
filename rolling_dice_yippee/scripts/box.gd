@@ -34,7 +34,7 @@ func _ready() -> void:
 	dice.append(load("res://scenes/dice/d_20.tscn"))
 	
 	var json: JSON = JSON.new()
-	var json_read: FileAccess = FileAccess.open("res://players.json", FileAccess.READ)
+	var json_read: FileAccess = FileAccess.open("user://players.json", FileAccess.READ)
 	var error: Error = json.parse(json_read.get_as_text())
 	if error == OK:
 		var json_data = json.data
