@@ -50,23 +50,6 @@ func _ready() -> void:
 	dice_standstill = true
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_left"):
-		execute_string("roll_1,1,1,0,0,1,8")
-	
-	if Input.is_action_just_pressed("ui_up"):
-		execute_string("roll_1,1,1,0,0,1,0")
-		
-	if Input.is_action_just_pressed("ui_down"):
-		execute_string("roll_1,1,1,0,0,1,20")
-	
-	if Input.is_action_just_pressed("ui_right"):
-		execute_string("clear")
-	
-	if Input.is_action_just_pressed("ui_page_down"):
-		execute_string("switch_0")
-	
-	if Input.is_action_just_pressed("ui_page_up"):
-		execute_string("switch_1")
 	
 	# Check whether dice are moving
 	if !dice_standstill:
