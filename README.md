@@ -8,7 +8,7 @@ Tool intended for use as livestream or recording overlay, able to be keyed to an
 
 Export for your platform of choice through Godot (instructions on how to do that [here](docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html) and you may run the application from there.  
   
-If Stream Deck plugin is installed, continue to next section.  
+Once Stream Deck plugin is installed, continue to next section.  
   
 If you would prefer to activate the signal through another method, please modify the code and/or plugins to handle that as you see fit.  
   
