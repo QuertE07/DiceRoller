@@ -8,12 +8,15 @@ class Set:
 		name = set_name
 		texture = set_texture
 
-var die: Array[PackedScene]
+var dice: Array[PackedScene]
 var sets: Array[Set]
 
 var active_player: String
 var dice_material: StandardMaterial3D = preload("res://models/materials/dice.tres")
-var active_die: Array[Node]
+var active_dice: Array[Node]
+
+var dice_total: int = 0
+var active_modifier: int = 0
 
 var dice_pos_old: Array[Vector3] = [Vector3(0, 0, 0)]
 var dice_pos_new: Array[Vector3] = [Vector3(1, 1, 1)]
@@ -23,12 +26,12 @@ var dice_standstill: bool = true
 var frame_count: int = 0
 
 func _ready() -> void:
-	die.append(load("res://scenes/dice/d_4.tscn"))
-	die.append(load("res://scenes/dice/d_6.tscn"))
-	die.append(load("res://scenes/dice/d_8.tscn"))
-	die.append(load("res://scenes/dice/d_10.tscn"))
-	die.append(load("res://scenes/dice/d_12.tscn"))
-	die.append(load("res://scenes/dice/d_20.tscn"))
+	dice.append(load("res://scenes/dice/d_4.tscn"))
+	dice.append(load("res://scenes/dice/d_6.tscn"))
+	dice.append(load("res://scenes/dice/d_8.tscn"))
+	dice.append(load("res://scenes/dice/d_10.tscn"))
+	dice.append(load("res://scenes/dice/d_12.tscn"))
+	dice.append(load("res://scenes/dice/d_20.tscn"))
 	
 	var json: JSON = JSON.new()
 	var json_read: FileAccess = FileAccess.open("res://players.json", FileAccess.READ)
@@ -47,6 +50,24 @@ func _ready() -> void:
 	dice_standstill = true
 
 func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_left"):
+		execute_string("roll_1,1,1,0,0,1,8")
+	
+	if Input.is_action_just_pressed("ui_up"):
+		execute_string("roll_1,1,1,0,0,1,0")
+		
+	if Input.is_action_just_pressed("ui_down"):
+		execute_string("roll_1,1,1,0,0,1,20")
+	
+	if Input.is_action_just_pressed("ui_right"):
+		execute_string("clear")
+	
+	if Input.is_action_just_pressed("ui_page_down"):
+		execute_string("switch_0")
+	
+	if Input.is_action_just_pressed("ui_page_up"):
+		execute_string("switch_1")
+	
 	# Check whether dice are moving
 	if !dice_standstill:
 		frame_count += 1
@@ -54,8 +75,8 @@ func _physics_process(_delta: float) -> void:
 		if frame_count > 5:
 			dice_pos_old = dice_pos_new.duplicate()
 			dice_pos_new.clear()
-			for dice in active_die:
-				dice_pos_new.append(dice.position)
+			for die in active_dice:
+				dice_pos_new.append(die.position)
 			
 			if !dice_pos_new.is_empty() && !dice_pos_old.is_empty():
 				var validated: bool = true
@@ -76,17 +97,26 @@ func _physics_process(_delta: float) -> void:
 	$Info/Name.text = active_player
 	
 	$Info/StringInstance.text = ""
+	$Info/StringInstance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	$Info/Result.text = ""
-	var die_total: int = 0
-	var increment: int = 35
+	
+	if !dice_standstill:
+		dice_total = 0
+	var increment: int = 17
+	if active_modifier > 19:
+		increment += 75
+	elif active_modifier > 9:
+		increment += 70
+	elif active_modifier:
+		increment += 60
 	
 	for child in $Info/Instances.get_children():
 		child.free()
 	
-	for dice in active_die:
-		var value: int = dice.get_roll()
+	for die in active_dice:
+		var value: int = die.get_roll()
 		
-		if active_die.size() <= 5:
+		if active_dice.size() + int(bool(active_modifier)) <= 5:
 			var new_number: Label = $Info/StringInstance.duplicate()
 			var new_operator: Label = $Info/StringInstance.duplicate()
 			
@@ -96,19 +126,24 @@ func _physics_process(_delta: float) -> void:
 			
 			new_number.text = str(value)
 			$Info/Instances.add_child(new_number)
-			if (dice != active_die.back()):
+			if (die != active_dice.back()):
 				new_operator.text = "+"
 				$Info/Instances.add_child(new_operator)
 		
-		die_total += value
+		if !dice_standstill:
+			dice_total += value
 	
-	if !active_die.is_empty():
-		if active_die.size() <= 5: $Info/StringInstance.text += "="
+	if !dice_total == 0:
+		if !active_dice.is_empty() && active_dice.size() + int(bool(active_modifier)) <= 5:
+			$Info/StringInstance.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			if active_modifier != 0:
+				$Info/StringInstance.text += ("+ " if active_modifier < 10 else "+") + str(active_modifier)
+			$Info/StringInstance.text += "="
 		if dice_standstill:
 			$Info/Result.set("theme_override_colors/font_color", Color(1.0, 0.89, 0.663, 1.0))
 		else:
 			$Info/Result.set("theme_override_colors/font_color", Color(1.0, 1.0, 1.0, 1.0))
-		$Info/Result.text = str(die_total)
+		$Info/Result.text = str(dice_total + active_modifier)
 
 func execute_string(string: String) -> void:
 	var command: String
@@ -121,7 +156,8 @@ func execute_string(string: String) -> void:
 		"roll":
 			clear_box()
 			dice_standstill = false
-			for i in 6:
+			dice_total = 0
+			for i in dice.size() + 1:
 				inputs.append(int(string.substr(0, string.find(","))))
 				string = string.substr(string.find(",") + 1)
 			roll_dice(inputs)
@@ -131,33 +167,39 @@ func execute_string(string: String) -> void:
 				dice_material.albedo_texture = sets[inputs.front()].texture
 				active_player = sets[inputs.front()].name
 				clear_box()
+				dice_total = 0
 		"clear":
 			clear_box()
 
-func roll_dice(die_count: Array[int]):
-	die_count.resize(die.size())
+func roll_dice(dice_count: Array[int]):
+	dice_count.resize(dice.size() + 1)
 	
-	for i in die.size():
-		for j in die_count[i]:
-			var dice: RigidBody3D = die[i].instantiate()
+	for i in dice.size():
+		for j in dice_count[i]:
+			var die: RigidBody3D = dice[i].instantiate()
 			var path: Path3D = $SpawnPath
 			
-			dice.position = path.curve.sample_baked(randf_range(0, path.curve.get_baked_length()))
-			dice.rotation_degrees = Vector3(randf() * 360, randf() * 360, randf() * 360)
+			die.position = path.curve.sample_baked(randf_range(0, path.curve.get_baked_length()))
+			die.rotation_degrees = Vector3(randf() * 360, randf() * 360, randf() * 360)
 			
-			var direction_to_center: Vector3 = dice.position.direction_to(Vector3(0, 2, 0))
+			var direction_to_center: Vector3 = die.position.direction_to(Vector3(0, 2, 0))
 			direction_to_center = direction_to_center.rotated(Vector3(0, 0, 0), (randf() - 0.5) * 10)
-			dice.linear_velocity = direction_to_center * 15
-			dice.angular_velocity = Vector3((randf() - 0.5) * 60, 0, (randf() - 0.5) * 60)
+			die.linear_velocity = direction_to_center * 15
+			die.angular_velocity = Vector3((randf() - 0.5) * 60, 0, (randf() - 0.5) * 60)
 			
-			$Die.add_child(dice)
+			$Dice.add_child(die)
 	
-	active_die = $Die.get_children()
+	active_modifier = dice_count[dice.size()]
+	
+	active_dice = $Dice.get_children()
 
 func clear_box():
-	for i in active_die.size():
-		active_die[i].free()
-	active_die.clear()
+	if !dice_standstill:
+		dice_total = 0
+	
+	for i in active_dice.size():
+		active_dice[i].free()
+	active_dice.clear()
 	dice_standstill = true
 
 func _on_info_close_requested() -> void:
