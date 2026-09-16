@@ -44,7 +44,9 @@ When rolling, the previous set of active die is cleared from the box if applicab
   
 Input 1 number. This represents the index of the profile in the `players.json` file you wish to fetch. If the number inputted is out of bounds, a player will not be fetched.  
   
-For this step to use custom player names along with your own dice texture, you will have to modify the `players.json` file to include the names and texture paths they would like to use. You will also need to create the custom textures you intend to use for the dice, which you can place in the `textures` directory adjacent to the json file.  
+For this step to use custom player names along with your own dice texture, you will have to modify the `players.json` file to include the names and texture paths they would like to use. You will also need to create the custom textures you intend to use for the dice, which you can place in the `textures` directory adjacent to the json file. To make more than two players, add as many player indexes to the array in `players.json` as needed and customize them from there.  
+  
+(Note: Please double check if you have things located in the correct directory and/or that your json formatting is correct if anything seems to be failing. The base `players.json` should be fully functional utilizing the provided texture base, and will only encounter issues if you have modified it improperly.)  
   
 #### "clear"
 
