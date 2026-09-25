@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="dice_roller"
+run/main_scene="res://scenes/box.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="DiceRoller"
+config/features=PackedStringArray("4.1", "Forward Plus")
+boot_splash/bg_color=Color(0, 0.87451, 0, 1)
+boot_splash/image="res://textures/whatsapp fates.png"
+boot_splash/use_filter=false
+config/icon="res://textures/whatsapp fates.png"
+boot_splash/minimum_display_time=1000
+
+[autoload]
+
+ElgatoStreamDeck="*res://addons/godot-streamdeck-addon/singleton.gd"
+
+[display]
+
+window/size/viewport_width=2000
+window/size/viewport_height=1300
+window/size/mode=3
+window/size/resizable=false
+window/size/borderless=true
+window/size/transparent=true
+window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-streamdeck-addon/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+viewport/transparent_background=true

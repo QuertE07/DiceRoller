@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://whk2luhmsuj5"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bg172hsy2o41e" path="res://misc_assets/dice_physmat.tres" id="1_ns8mc"]
+[ext_resource type="Script" path="res://scripts/dice.gd" id="2_7khgx"]
+[ext_resource type="ArrayMesh" uid="uid://bo2m6414xeqld" path="res://models/d12.res" id="3_t1yga"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e0ycw"]
+points = PackedVector3Array(0.864487, -0.173675, 0.280807, 0.534127, -0.734989, 0.173503, 0.330191, -0.734989, -0.454488, 0.534127, -0.173675, -0.735473, 0.864487, 0.173531, -0.280985, 0.330191, 0.734989, 0.45431, 0.534127, 0.173531, 0.735295, -0.000169218, -0.173675, 0.908976, 0, -0.734989, 0.561615, -0.33036, -0.734989, -0.454488, -0.534297, -0.173675, -0.735473, -0.000169218, 0.173531, -0.908976, 0, 0.734989, -0.561793, 0.534127, 0.734989, -0.173681, -0.33036, 0.734989, 0.45431, -0.534297, 0.173531, 0.735295, -0.864487, -0.173675, 0.280807, -0.534297, -0.734989, 0.173503, -0.864487, 0.173531, -0.280985, -0.534297, 0.734989, -0.173681)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 10.0
+physics_material_override = ExtResource("1_ns8mc")
+gravity_scale = 4.0
+angular_damp = 1.0
+script = ExtResource("2_7khgx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_t1yga")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_e0ycw")

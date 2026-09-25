@@ -1,0 +1,278 @@
+[gd_scene load_steps=15 format=3 uid="uid://wjh4yb4n5n0n"]
+
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_0rvg0"]
+[ext_resource type="FontFile" uid="uid://btn0kkxfysa00" path="res://misc_assets/de-vinne-ornament-d.ttf" id="2_tvhc4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nonx1"]
+size = Vector3(16, 20, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nse7n"]
+size = Vector3(16, 20, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awgl1"]
+size = Vector3(1, 20, 10.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nhyw"]
+size = Vector3(1, 20, 10.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_se6l7"]
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vxis"]
+size = Vector3(16, 1, 10.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gko1"]
+size = Vector3(16, 9, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nqle"]
+size = Vector3(1, 9, 10.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mtx75"]
+size = Vector3(16, 1, 10.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_glknh"]
+size = Vector3(1, 8, 8.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ke5x"]
+friction = 0.9
+rough = true
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="Curve3D" id="Curve3D_nl3em"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 6.5, 4, 3.5, 0, 0, 0, 0, 0, 0, -6.5, 4, 3.5, 0, 0, 0, 0, 0, 0, -6.5, 4, -3.5, 0, 0, 0, 0, 0, 0, 6.5, 4, -3.5, 0, 0, 0, 0, 0, 0, 6.5, 4, 3.5),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_0rvg0")
+
+[node name="InfoView" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(800, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+stretch = true
+
+[node name="Info" type="SubViewport" parent="InfoView"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(800, 100)
+render_target_update_mode = 4
+
+[node name="Name" type="Label" parent="InfoView/Info"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -27.0
+offset_right = 224.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_tvhc4")
+theme_override_font_sizes/font_size = 60
+text = "George"
+vertical_alignment = 1
+
+[node name="Result" type="Label" parent="InfoView/Info"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -35.5
+offset_right = -19.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_tvhc4")
+theme_override_font_sizes/font_size = 80
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StringInstance" type="Label" parent="InfoView/Info"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -25.0
+offset_right = -121.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_tvhc4")
+theme_override_font_sizes/font_size = 45
+text = "="
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Instances" type="Node" parent="InfoView/Info"]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="InfoView"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+border_color = Color(0.392157, 0, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="DiceView" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(2000, 1200)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1000.0
+offset_right = 1000.0
+offset_bottom = 1200.0
+grow_horizontal = 2
+stretch = true
+
+[node name="Dice" type="SubViewport" parent="DiceView"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2000, 1200)
+render_target_update_mode = 4
+
+[node name="CoinBox" type="StaticBody3D" parent="DiceView/Dice"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="zpos" type="CollisionShape3D" parent="DiceView/Dice/CoinBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 4.75)
+shape = SubResource("BoxShape3D_nonx1")
+
+[node name="zneg" type="CollisionShape3D" parent="DiceView/Dice/CoinBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -4.75)
+shape = SubResource("BoxShape3D_nse7n")
+
+[node name="xpos" type="CollisionShape3D" parent="DiceView/Dice/CoinBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 10, 0)
+shape = SubResource("BoxShape3D_awgl1")
+
+[node name="xneg" type="CollisionShape3D" parent="DiceView/Dice/CoinBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 10, 0)
+shape = SubResource("BoxShape3D_3nhyw")
+
+[node name="CoinFloor" type="StaticBody3D" parent="DiceView/Dice"]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_se6l7")
+
+[node name="floor" type="CollisionShape3D" parent="DiceView/Dice/CoinFloor"]
+shape = SubResource("BoxShape3D_7vxis")
+
+[node name="Box" type="StaticBody3D" parent="DiceView/Dice"]
+
+[node name="zpos" type="CollisionShape3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 4.75)
+shape = SubResource("BoxShape3D_1gko1")
+
+[node name="zneg" type="CollisionShape3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -4.75)
+shape = SubResource("BoxShape3D_1gko1")
+
+[node name="xpos" type="CollisionShape3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 4.5, 0)
+shape = SubResource("BoxShape3D_4nqle")
+
+[node name="xneg" type="CollisionShape3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
+shape = SubResource("BoxShape3D_4nqle")
+
+[node name="ceiling" type="CollisionShape3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+shape = SubResource("BoxShape3D_mtx75")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 4.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_glknh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DiceView/Dice/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_glknh")
+
+[node name="Floor" type="StaticBody3D" parent="DiceView/Dice"]
+physics_material_override = SubResource("PhysicsMaterial_2ke5x")
+
+[node name="floor" type="CollisionShape3D" parent="DiceView/Dice/Floor"]
+shape = SubResource("BoxShape3D_7vxis")
+
+[node name="Camera" type="Camera3D" parent="DiceView/Dice"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 21.6574, 0)
+fov = 24.0
+
+[node name="Key" type="DirectionalLight3D" parent="DiceView/Dice"]
+transform = Transform3D(0.547231, -0.803264, 0.235172, 0.164725, 0.378842, 0.910683, -0.820612, -0.459615, 0.339632, 0, 17.9, 0)
+light_energy = 0.9
+light_volumetric_fog_energy = 0.0
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="BackLight" type="DirectionalLight3D" parent="DiceView/Dice"]
+transform = Transform3D(0.0583138, 0.946687, -0.316833, 0.43154, -0.310093, -0.847122, -0.900207, -0.0873273, -0.426616, 0, 14.685, 0)
+light_color = Color(0.701961, 0.627451, 0.596078, 1)
+light_energy = 0.2
+light_volumetric_fog_energy = 0.0
+directional_shadow_mode = 0
+
+[node name="SpawnPath" type="Path3D" parent="DiceView/Dice"]
+curve = SubResource("Curve3D_nl3em")
+
+[node name="Dice" type="Node" parent="DiceView/Dice"]
+
+[node name="CoinSpawn" type="Node3D" parent="DiceView/Dice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 12, 0)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DiceView"]
+custom_minimum_size = Vector2(2000, 1200)
+layout_mode = 2
+border_color = Color(0.392157, 0, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="LeftBorder" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(600, 100)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="RightBorder" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(600, 100)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -560.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

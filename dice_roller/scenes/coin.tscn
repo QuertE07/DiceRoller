@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkxmi2xv8qan0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dy4mvu0fq4nrk" path="res://models/coin.res" id="1_q46ew"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xfyx"]
+friction = 0.8
+bounce = 0.4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cyedo"]
+height = 0.17
+radius = 1.19
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
+mass = 120.0
+physics_material_override = SubResource("PhysicsMaterial_0xfyx")
+gravity_scale = 3.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_q46ew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_cyedo")

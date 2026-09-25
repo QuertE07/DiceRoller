@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dmhuin041fwlf"]
+
+[ext_resource type="Texture2D" uid="uid://dn4wkaj0g5tn3" path="res://textures/Coin.png" id="1_ku5je"]
+
+[resource]
+albedo_texture = ExtResource("1_ku5je")
+metallic = 1.0
+roughness = 0.5
+rim_enabled = true

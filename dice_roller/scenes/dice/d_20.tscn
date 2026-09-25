@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://cef755hm27hqa"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bg172hsy2o41e" path="res://misc_assets/dice_physmat.tres" id="1_tlo34"]
+[ext_resource type="Script" path="res://scripts/dice.gd" id="2_qd1s2"]
+[ext_resource type="ArrayMesh" uid="uid://cdph8gy4duux0" path="res://models/d20.res" id="3_wre5r"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7wld0"]
+points = PackedVector3Array(-0.886216, -0.443232, 0, 0, -0.990822, 0, -0.27395, -0.443232, 0.842833, -0.717058, 0.443038, 0.520748, -0.717058, 0.443038, -0.520913, -0.27395, -0.443232, -0.842833, 0.716884, -0.443232, -0.520913, 0.716884, -0.443232, 0.520748, 0.273776, 0.443038, 0.842833, 0, 0.990822, 0, 0.273776, 0.443038, -0.842833, 0.886216, 0.443038, 0)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 10.0
+physics_material_override = ExtResource("1_tlo34")
+gravity_scale = 4.0
+angular_damp = 1.0
+script = ExtResource("2_qd1s2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_wre5r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_7wld0")
+
+[node name="1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648, 0.112, 0.457)
+
+[node name="2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233, 0.112, -0.744)
+
+[node name="3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.655, 0.443)
+
+[node name="4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.463, 0.655, -0.005)
+
+[node name="5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.373, 0.655, -0.278)
+
+[node name="6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.651, -0.112, 0.447)
+
+[node name="7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.792, -0.112, 0)
+
+[node name="8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358, -0.655, -0.297)
+
+[node name="9" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.112, 0.749)
+
+[node name="10" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.168, -0.655, -0.426)
+
+[node name="11" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145, 0.655, 0.436)
+
+[node name="12" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258, -0.112, -0.737)
+
+[node name="13" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.379, 0.655, 0.265)
+
+[node name="14" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.794, 0.112, -0.006)
+
+[node name="15" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.638, 0.112, -0.473)
+
+[node name="16" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.389, -0.655, 0.245)
+
+[node name="17" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.463, -0.655, 0)
+
+[node name="18" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.135, 0.655, -0.436)
+
+[node name="19" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242, -0.112, 0.752)
+
+[node name="20" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633, -0.112, -0.483)

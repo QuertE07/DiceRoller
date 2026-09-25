@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxi13exy0adyj"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bg172hsy2o41e" path="res://misc_assets/dice_physmat.tres" id="1_5gyhy"]
+[ext_resource type="Script" path="res://scripts/dice.gd" id="2_frohk"]
+[ext_resource type="ArrayMesh" uid="uid://c2ww0sanuq2u" path="res://models/d10.res" id="3_q6lwr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c85ni"]
+points = PackedVector3Array(-0.000171483, 0.102596, 0.921088, 0, 0.992534, 0, -0.541416, -0.10279, 0.745093, 0, -0.992534, 0, 0.541245, -0.10279, 0.745093, 0.876007, 0.102596, 0.284549, 0.876007, -0.10279, -0.284729, 0.541245, 0.102596, -0.745273, 0, -0.10279, -0.921088, -0.541416, 0.102596, -0.745273, -0.876007, -0.10279, -0.284729, -0.876007, 0.102596, 0.284549)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 10.0
+physics_material_override = ExtResource("1_5gyhy")
+gravity_scale = 4.0
+angular_damp = 1.0
+script = ExtResource("2_frohk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_q6lwr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_c85ni")

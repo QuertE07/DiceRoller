@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2o1xmt1s7q80"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bg172hsy2o41e" path="res://misc_assets/dice_physmat.tres" id="1_aqs6t"]
+[ext_resource type="Script" path="res://scripts/dice.gd" id="2_i1kdo"]
+[ext_resource type="ArrayMesh" uid="uid://dy5c1ca5frrhu" path="res://models/d8.res" id="3_o7sh2"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_21f3i"]
+points = PackedVector3Array(-0.712743, 0, -0.712743, 0, -0.983906, 0, -0.712743, 0, 0.712604, 0, 0.983906, 0, 0.712743, 0, -0.712743, 0.712604, 0, 0.712743)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 10.0
+physics_material_override = ExtResource("1_aqs6t")
+gravity_scale = 4.0
+angular_damp = 1.0
+script = ExtResource("2_i1kdo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_o7sh2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_21f3i")
+
+[node name="1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.394, -0.447)
+
+[node name="2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.389, 0.461, 0)
+
+[node name="3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.389, -0.467, 0)
+
+[node name="4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457, -0.408)
+
+[node name="5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.394, 0.436)
+
+[node name="6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403, 0.461, 0)
+
+[node name="7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403, -0.457, 0)
+
+[node name="8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408, 0.436)
