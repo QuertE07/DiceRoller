@@ -62,7 +62,7 @@ As the implementation of the d10 and d12 is not pressing for current usage, they
   
 ### Tools:
 
-[Godot 4.5](https://godotengine.org/)  
+[Godot 4.1.2](https://godotengine.org/)  
 [Blender 5.0](https://www.blender.org/download/)  
 
 ### Plugins:
